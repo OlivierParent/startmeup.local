@@ -78,14 +78,15 @@ $ bower install
 
 
 ```
-    $ vagrant ssh
+$ vagrant ssh
 ```
 
 8. Initialize the database (create the database) and then run the Migrations (create database tables) and Seeders (populate the database tables with data)
 
-
-    vagrant@startmeup$ cd ~/startmeup.local/www/
-    vagrant@startmeup$ artisan artevelde:database:init --seed
+```
+vagrant@startmeup$ cd ~/startmeup.local/www/
+vagrant@startmeup$ artisan artevelde:database:init --seed
+```
 
 ### Pages
 
