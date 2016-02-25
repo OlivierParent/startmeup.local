@@ -1,0 +1,140 @@
+@import 'fonts';
+@import 'palette';
+
+.view {
+  height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  &.splash {
+    div {
+      width: 100%;
+    }
+    p {
+      text-align: center;
+    }
+    .logo {
+      max-width: 50vh;
+      max-height: 50vw;
+    }
+  }
+}
+
+body {
+  font-family: $smu-ff;
+  font-weight: 400;
+}
+
+h1, h2, h3 {
+  color: $smu-c-accent;
+  font-weight: 300 !important;
+}
+.centered {
+  text-align: center;
+}
+
+// Material Design
+md {
+  &-toolbar {
+    font-size: .75em;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  .icon {
+    border: 3px solid $smu-c-accent;
+    border-radius: 50%;
+    height: 3rem;
+    margin-right: 1rem;
+    width: 3rem;
+  }
+  h1 {
+    line-height: 3rem;
+    margin: 0;
+  }
+}
+
+.profile-picture {
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+  border: 3px solid $smu-c-accent;
+}
+
+.smu {
+  &-map {
+    height: 100vh;
+  }
+}
+
+ng {
+  &-messages {
+    &.error {
+      color: $smu-error;
+      font-size: .75rem;
+    }
+  }
+}
+
+.view-animate {
+  &-container {
+    position: relative;
+  }
+  &.ng-enter,
+  &.ng-leave {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+
+    display: block;
+    width: 100vw;
+    border-left: 1px solid black;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &.ng-enter {
+    left: 100%;
+    &.ng-enter-active {
+      left: 0;
+    }
+  }
+  &.ng-leave {
+    &.ng-leave-active {
+      left: -100%;
+    }
+  }
+}
+
+.smu {
+  &-goal-details {
+    display: none;
+    &-show {
+      display: block;
+    }
+  }
+  &-mood-button {
+    md-icon {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  &-mood-statistics {
+    md-icon {
+      margin: 0 22px;
+    }
+  }
+}
+
+/*
+ * Material Design bug fixes (may not be necessary in future releases).
+ */
+
+md-list-item {
+  position: relative;
+}

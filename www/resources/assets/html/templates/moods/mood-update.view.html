@@ -1,0 +1,33 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" ng-click="openLeftSidenav()">
+			<md-icon md-font-icon="fa fa-bars"></md-icon>
+		</md-button>
+		<h1>Mood Update</h1>
+	</div>
+</md-toolbar>
+<md-content class="md-padding">
+	<form action="" name="mood_form">
+		<section>
+			<md-subheader class="md-accent">
+				<h2 class="md-headline centered">How do you feel?</h2>
+			</md-subheader>
+			<div layout="row" layout-align="center center">
+				<md-button class="md-icon-button smu-mood-button{{ vm.mood.$$hasFeeling(mood.value) ? ' md-raised' : '' }}" aria-label="{{ mood.label }}" ng-repeat="mood in vm.$$MOOD_TYPES" ng-click="vm.mood.$$setFeeling(mood.value)" ng-disabled="vm.mood.$$hasFeeling(mood.value)">
+					<md-icon md-svg-src="images/moods/mood-{{ mood.value | lowercase }}.svg"></md-icon>
+				</md-button>
+			</div>
+		</section>
+
+		<br><br>
+		<nav layout layout-align="space-between center">
+			<md-button class="md-raised md-accent" href="#/goals" ng-click="vm.save($event)">
+				<md-icon md-font-icon="fa fa-cloud-upload"></md-icon> Save
+			</md-button>
+
+			<md-button href="#/moods/statistics">
+				<md-icon md-font-icon="fa fa-bar-chart"></md-icon> Statistics
+			</md-button>
+		</nav>
+	</form>
+</md-content>

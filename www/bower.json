@@ -1,0 +1,36 @@
+{
+  "name": "StartMeUpBuddy",
+  "version": "1.0.0",
+  "authors": [
+    "Olivier Parent <olivier.parent@arteveldehs.be>"
+  ],
+  "description": "StartMeUpBuddy.io app developed at Artevelde University College Ghent",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-aria": "~1.5.0",
+    "angular-cookies": "~1.5.0",
+    "angular-material": "^1.0.5",
+    "angular-messages": "~1.5.0",
+    "angular-new-router": "latest",
+    "angular-resource": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-touch": "~1.5.0",
+    "bootstrap-sass-official": "~3.3.6",
+    "chartjs": "~1.0.2",
+    "fontawesome": "^4.5.0",
+    "leaflet": "^0.7.7",
+    "lodash": "^4.5.1",
+    "moment": "~2.11.2"
+  }
+}

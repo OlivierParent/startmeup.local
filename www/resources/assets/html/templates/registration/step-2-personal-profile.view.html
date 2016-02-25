@@ -1,0 +1,133 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1><i class="fa fa-user"></i> Personal Profile</h1>
+		<span flex></span>
+	</div>
+</md-toolbar>
+<md-content class="md-padding">
+	<form action="" name="registration_form">
+		<section>
+			<md-subheader class="md-accent centered">Personal details</md-subheader>
+
+			<div layout="row" layout-sm="column">
+				<md-input-container flex>
+					<label>First name</label>
+					<input type="text" name="given_name" ng-model="vm.user.given_name" required>
+					<ng-messages for="registration_form.given_name.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+				<md-input-container flex>
+					<label>Last name</label>
+					<input type="text" name="family_name" ng-model="vm.user.family_name" required>
+					<ng-messages for="registration_form.family_name.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-sm="column">
+				<label>Gender:</label>
+				<md-radio-group id="gender" ng-model="vm.user.gender" layout="row" layout-sm="row">
+					<md-radio-button value="FEMALE" aria-label="female" flex>
+						<md-icon md-font-icon="fa fa-venus"></md-icon>
+					</md-radio-button>
+					<md-radio-button value="MALE" aria-label="male" flex>
+						<md-icon md-font-icon="fa fa-mars"></md-icon>
+					</md-radio-button>
+					<md-radio-button value="OTHER" aria-label="other" flex>
+						<md-icon md-font-icon="fa fa-transgender"></md-icon>
+					</md-radio-button>
+				</md-radio-group>
+			</div>
+
+			<div layout="row" layout-sm="column">
+				<md-input-container flex>
+					<label>
+						<md-icon md-font-icon="fa {{ vm.settings.share_birthday ? 'fa-eye' : 'fa-eye-slash' }}"></md-icon>
+						Birthday
+					</label>
+					<input type="date" name="birthday" ng-model="vm.user.$$getSetBirthday" ng-model-options="{ getterSetter: true }">
+					<ng-messages for="registration_form.birthday.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+				<md-switch ng-show="vm.user.birthday" ng-model="vm.settings.share_birthday" aria-label="Share birthday" flex>
+					Share
+				</md-switch>
+			</div>
+		</section>
+
+		<section>
+			<md-subheader class="md-accent centered">Contact details</md-subheader>
+			<div layout="row" layout-sm="column">
+				<md-input-container flex>
+					<label>
+						<md-icon md-font-icon="fa {{ vm.settings.share_mobile ? 'fa-eye' : 'fa-eye-slash' }}"></md-icon>
+						Mobile phone
+					</label>
+					<input type="tel" ng-model="vm.user.mobile">
+				</md-input-container>
+				<md-switch ng-show="vm.user.mobile" ng-model="vm.settings.share_mobile" aria-label="Share mobile" flex>
+					Share
+				</md-switch>
+			</div>
+
+			<div layout="row" layout-sm="column">
+				<md-input-container flex>
+					<label>
+						<md-icon md-font-icon="fa {{ vm.settings.share_email ? 'fa-eye' : 'fa-eye-slash' }}"></md-icon>
+						Email
+					</label>
+					<input type="email" name="email" ng-model="vm.user.email" required>
+					<ng-messages for="registration_form.email.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+				<md-switch ng-show="vm.user.email" ng-model="vm.settings.share_email" aria-label="Share email" flex>
+					Share
+				</md-switch>
+			</div>
+		</section>
+
+		<section>
+			<md-subheader class="md-accent centered">Interests</md-subheader>
+			<md-chips ng-model="vm.user.interests" md-on-append="vm.user.$$addInterest($chip)" md-autocomplete-snap flex>
+				<md-autocomplete md-autoselect
+								 md-no-cache
+								 md-selected-item="vm.user.$$interestSelected"
+								 md-search-text="vm.user.$$interestSearchText"
+								 md-items="interest in vm.user.$$searchInterest()"
+								 md-item-text="interest.name"
+								 placeholder="Add an interest">
+					<md-item-template>
+						<span md-highlight-text="vm.user.$$interestSearchText">{{ interest.name }}</span>
+					</md-item-template>
+					<md-not-found>This is a new interest.</md-not-found>
+				</md-autocomplete>
+				<md-chip-template>
+					<strong>{{ $chip.name }}</strong>
+				</md-chip-template>
+			</md-chips>
+			<md-switch ng-show="vm.user.interests.length > 0" ng-model="vm.settings.share_interests" aria-label="Share interests" flex>
+				Share
+			</md-switch>
+		</section>
+
+		<section>
+			<md-subheader class="md-accent centered">Collaborate</md-subheader>
+			<p>Do you want to collaborate with other users?</p>
+			<md-switch flex ng-model="vm.settings.want_to_collaborate" aria-label="Wish to collaborate">
+				{{ vm.settings.want_to_collaborate ? 'Yes I do' : 'No I do not' }}.
+			</md-switch>
+		</section>
+	</form>
+	<footer layout layout-align="space-between end">
+		<md-button href="#/registration/step/1/of/4">
+			&lt; Go back
+		</md-button>
+		<md-button class="md-raised md-accent" ng-click="vm.processFormStep($event)">
+			Continue &gt;
+		</md-button>
+	</footer>
+</md-content>

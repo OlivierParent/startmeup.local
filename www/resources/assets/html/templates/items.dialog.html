@@ -1,0 +1,17 @@
+<md-dialog aria-label="{{ vm.title }}">
+	<form>
+		<md-dialog-content class="sticky-container">
+			<md-subheader class="md-sticky-no-effect">{{ vm.title }}</md-subheader>
+			<md-list>
+				<md-list-item ng-repeat="item in vm.items">
+					<p>{{ item }}</p>
+				</md-list-item>
+			</md-list>
+		</md-dialog-content>
+		<div class="md-actions" layout="row">
+			<md-button ng-click="vm.hide()">
+				ok
+			</md-button>
+		</div>
+	</form>
+</md-dialog>

@@ -1,0 +1,21 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" ng-click="openLeftSidenav()">
+			<md-icon md-font-icon="fa fa-bars"></md-icon>
+		</md-button>
+		<h1>Shoot!</h1>
+	</div>
+</md-toolbar>
+<md-content class="md-padding">
+	<h2>Leaderboard</h2>
+	<md-list class="leaderboard" ng-controller="LeaderboardCtrl">
+		<md-list-item class="md-padding" ng-repeat="item in leaderboard">
+			<div layout="row" layout-align="space-between center" style="height: 5vh">
+				<div>{{item.position}}</div>
+				<div>{{item.user.firstName}}</div>
+				<div>({{item.company.name}})</div>
+				<div>{{item.score}}</div>
+			</div>
+		</md-list-item>
+	</md-list>
+</md-content>

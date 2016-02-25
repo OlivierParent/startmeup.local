@@ -1,0 +1,30 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" ng-click="openLeftSidenav()">
+			<md-icon md-font-icon="fa fa-bars"></md-icon>
+		</md-button>
+		<h1>Mood Statistics</h1>
+	</div>
+</md-toolbar>
+<md-content class="md-padding">
+	<form action="" name="mood_form">
+		<section class="smu-mood-statistics">
+			<md-subheader class="md-accent">
+				<h2 class="md-headline centered">How you've been feeling</h2>
+			</md-subheader>
+			<div layout="row" layout-align="center center">
+				<canvas id="mood-chart-0" width="400" height="300"></canvas>
+			</div>
+			<div layout="row" layout-align="center center">
+				<md-icon md-svg-src="images/moods/mood-{{ mood.value | lowercase }}.svg" ng-repeat="mood in vm.$$moodCounts"></md-icon>
+			</div>
+		</section>
+
+		<br><br>
+		<nav layout layout-align="space-between center">
+			<md-button class="md-raised md-accent" href="#/moods">
+				&lt; Back
+			</md-button>
+		</nav>
+	</form>
+</md-content>

@@ -1,0 +1,15 @@
+<md-dialog aria-label="{{ vm.title }}">
+	<form>
+		<md-dialog-content class="sticky-container">
+			<md-subheader class="md-sticky-no-effect">{{ vm.title }}</md-subheader>
+			<div>
+				<p>{{ vm.message }}</p>
+			</div>
+		</md-dialog-content>
+		<div class="md-actions" layout="row">
+			<md-button ng-click="vm.hide()">
+				ok
+			</md-button>
+		</div>
+	</form>
+</md-dialog>

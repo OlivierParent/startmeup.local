@@ -1,0 +1,117 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" aria-label="Menu" ng-click="openLeftSidenav()">
+			<md-icon md-font-icon="fa fa-bars"></md-icon>
+		</md-button>
+		<h1>Edit Goal</h1>
+	</div>
+</md-toolbar>
+<md-content class="md-padding">
+	<form action="" name="goal_form">
+		<section>
+			<md-subheader class="md-accent">Details</md-subheader>
+			<md-input-container flex>
+				<label>Name</label>
+				<input name="name" ng-model="vm.goal.name" required>
+				<ng-messages for="goal_form.name.$error">
+					<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+				</ng-messages>
+			</md-input-container>
+
+			<md-input-container flex>
+				<label>Notes</label>
+				<textarea name="notes" ng-model="vm.goal.notes" columns="1" rows="5" md-maxlength="250"></textarea>
+				<ng-messages for="goal_form.notes.$error">
+					<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+				</ng-messages>
+			</md-input-container>
+		</section>
+
+		<section>
+			<md-subheader class="md-accent">Target</md-subheader>
+
+			<div ng-show="vm.goal.$$hasTargetTypeCheckbox() || vm.goal.$$hasTargetTypeRecurringCheckbox()">
+				<h4>Deadline</h4>
+				<div layout="row" layout-sm="column">
+					<md-input-container flex>
+						<label>Date</label>
+						<input type="date" name="deadline_date" ng-model="vm.goal.target.$$getSetDeadlineDate" ng-model-options="{ getterSetter: true }" required>
+						<ng-messages for="goal_form.deadline_date.$error">
+							<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+						</ng-messages>
+					</md-input-container>
+					<md-input-container flex>
+						<label>Time</label>
+						<input type="time" name="deadline_time" ng-model="vm.goal.target.$$getSetDeadlineTime" ng-model-options="{ getterSetter: true }" required>
+						<ng-messages for="goal_form.deadline_time.$error">
+							<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+						</ng-messages>
+					</md-input-container>
+					<md-switch ng-model="vm.goal.target.deadline_reminder" aria-label="Deadline reminder" flex>
+						Reminder <i class="fa {{ vm.goal.target.deadline_reminder ? 'fa-bell-o' : 'fa-bell-slash-o' }}"></i>
+					</md-switch>
+				</div>
+
+				<div ng-show="vm.goal.$$hasTargetTypeRecurringCheckbox()">
+					<h4>Repeat</h4>
+					<md-select name="repeat_deadline" ng-model="vm.goal.target.repeat_deadline" placeholder="Repeat deadline" required>
+						<md-optgroup label="Repeat deadline">
+							<md-option ng-value="repeat.value" ng-repeat="repeat in vm.$$REPEAT_TYPES">{{ repeat.label }}</md-option>
+						</md-optgroup>
+					</md-select>
+
+					<h4>Repeat until</h4>
+					<div layout="row" layout-sm="column">
+						<md-input-container ng-show="vm.goal.target.repeat_deadline" flex>
+							<label>Date</label>
+							<input type="date" name="repeat_until_date" ng-model="vm.goal.target.$$getSetRepeatUntilDate" ng-model-options="{ getterSetter: true }">
+							<ng-messages for="goal_form.repeat_until_date.$error">
+								<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+							</ng-messages>
+						</md-input-container>
+						<md-input-container ng-show="vm.goal.target.repeat_deadline" flex>
+							<label>Time</label>
+							<input type="time" name="repeat_until_time" ng-model="vm.goal.target.$$getSetRepeatUntilTime" ng-model-options="{ getterSetter: true }">
+							<ng-messages for="goal_form.repeat_until_time.$error">
+								<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+							</ng-messages>
+						</md-input-container>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="vm.goal.$$hasTargetTypeDuration()">
+				<div layout="row" layout-sm="column">
+					<md-input-container flex>
+						<label>Time estimated</label>
+						<input type="number" name="time_estimated" min="0" ng-model="vm.goal.target.time_estimated">
+						<ng-messages for="goal_form.time_estimated.$error">
+							<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+						</ng-messages>
+					</md-input-container>
+					<md-select name="time_increment" ng-model="vm.goal.target.time_increment" placeholder="Time increment" required flex>
+						<md-optgroup label="Time increment">
+							<md-option ng-value="time_increment.value" ng-repeat="time_increment in vm.$$INCREMENT_TYPES">{{ time_increment.label }}</md-option>
+						</md-optgroup>
+					</md-select>
+				</div>
+				<div layout="row">
+					<md-input-container flex>
+						<label>Estimated total duration</label>
+						<input ng-model="vm.goal.target.$$duration" disabled>
+					</md-input-container>
+				</div>
+			</div>
+		</section>
+
+		<br><br>
+		<nav class="smu-button-bar" layout layout-align="space-between center">
+			<md-button class="md-raised md-accent" ng-click="vm.save($event)">
+				<md-icon md-font-icon="fa fa-cloud-upload"></md-icon> Save
+			</md-button>
+			<md-button class="md-raised" href="#/goals">
+				<md-icon md-font-icon="fa fa-times"></md-icon> Cancel
+			</md-button>
+		</nav>
+	</form>
+</md-content>

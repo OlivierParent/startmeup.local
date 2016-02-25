@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# v1 - 2015-08-27
+
+# Explicit cache
+CACHE:
+//fonts.googleapis.com/css?family=Quicksand:300,400,700
+/images
+/scripts
+/styles
+/templates
+
+# Online whitelist
+NETWORK:
+/api
+
+# Offline
+FALLBACK:

@@ -1,0 +1,15 @@
+// Fonts
+// -----
+
+$smu-ff: Quicksand, sans-serif;
+
+// Font-Awesome
+// ------------
+
+@import 'font-awesome';
+
+md-icon[md-font-icon] {
+  &.fa {
+    line-height: 1.4em;
+  }
+}

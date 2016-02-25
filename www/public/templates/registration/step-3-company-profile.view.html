@@ -1,0 +1,146 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h1><i class="fa fa-building-o"></i> Company Profile</h1>
+		<span flex></span>
+	</div>
+</md-toolbar>
+<md-content class="md-padding">
+	<form action="" name="registration_form">
+		<section>
+			<md-subheader class="md-accent centered">Information</md-subheader>
+			<div layout layout-sm="column">
+				<md-input-container flex>
+					<label>Company name</label>
+					<input type="text" name="company_name" ng-model="vm.company.name" required>
+					<ng-messages for="registration_form.company_name.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-sm="column">
+				<md-input-container flex>
+					<label>Description</label>
+					<textarea ng-model="vm.company.description" name="company_description" columns="1" md-maxlength="250" required></textarea>
+					<ng-messages for="registration_form.company_description.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+			</div>
+
+			<p>I&rsquo;m best described as a:</p>
+			<md-radio-group name="company_role" ng-model="vm.company.role" required>
+				<md-radio-button value="prestarter" aria-label="prestarter">prestarter</md-radio-button>
+				<md-radio-button value="starter" aria-label="starter">starter</md-radio-button>
+				<md-radio-button value="serial" aria-label="serial entrepreneur">serial entrepreneur</md-radio-button>
+			</md-radio-group>
+			<ng-messages for="registration_form.company_role.$error" class="error">
+				<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+			</ng-messages>
+		</section>
+
+		<!-- http://microformats.org/wiki/h-adr -->
+
+		<section>
+			<md-subheader class="md-accent centered">Registered Address</md-subheader>
+			<div layout="row">
+				<md-input-container flex>
+					<label>Street</label>
+					<input type="text" name="address_street" ng-model="vm.address.street" required>
+					<ng-messages for="registration_form.address_street.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+			</div>
+
+			<div layout="row">
+				<md-input-container flex>
+					<label>Street (additional details)</label>
+					<input type="text" name="address_extended" ng-model="vm.address.extended">
+					<ng-messages for="registration_form.address_extended.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-sm="column">
+				<md-autocomplete required flex
+								 md-input-name="postal_code"
+								 md-selected-item="vm.$$locality.$$selected"
+								 md-search-text="vm.$$locality.$$searchTextPostalCode"
+								 md-items="locality in vm.$$locality.$$searchByPostalCode()"
+								 md-item-text="locality.postal_code"
+								 md-floating-label="Postal Code">
+					<md-item-template>
+						<span md-highlight-text="vm.$$locality.$$searchTextPostalCode">{{ locality.postal_code }} {{ locality.name }}</span>
+					</md-item-template>
+					<md-not-found>Postal code {{ vm.$$locality.$$searchTextPostalCode }} not found.</md-not-found>
+					<ng-messages for="registration_form.postal_code.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-autocomplete>
+
+				<md-autocomplete required flex
+								 md-input-name="locality"
+								 md-selected-item="vm.$$locality.$$selected"
+								 md-search-text="vm.$$locality.$$searchTextName"
+								 md-items="locality in vm.$$locality.$$searchByName()"
+								 md-item-text="locality.name"
+								 md-floating-label="Locality">
+					<md-item-template>
+						<span md-highlight-text="vm.$$locality.$$searchTextName">{{ locality.postal_code }} {{ locality.name }}</span>
+					</md-item-template>
+					<md-not-found>Locality `{{ vm.$$locality.$$searchTextName }}` not found.</md-not-found>
+					<ng-messages for="registration_form.locality.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-autocomplete>
+			</div>
+
+			<div layout="row" layout-sm="column">
+				<md-autocomplete required flex
+								 md-autoselect
+								 md-input-name="region"
+								 md-selected-item="vm.$$region.$$selected"
+								 md-search-text="vm.$$region.$$searchTextName"
+								 md-items="region in vm.$$region.$$searchByName()"
+								 md-item-text="region.name"
+								 md-floating-label="Region">
+					<md-item-template>
+						<span md-highlight-text="vm.$$region.$$searchTextName">{{ region.name }}</span>
+					</md-item-template>
+					<md-not-found>Region `{{ vm.$$region.$$searchTextName }}` not found.</md-not-found>
+					<ng-messages for="registration_form.region.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-autocomplete>
+
+				<md-autocomplete required flex
+								 md-autoselect
+								 md-input-name="country"
+								 md-selected-item="vm.$$country.$$selected"
+								 md-search-text="vm.$$country.$$searchTextName"
+								 md-items="country in vm.$$country.$$searchByName()"
+								 md-item-text="country.name"
+								 md-floating-label="Country">
+					<md-item-template>
+						<span md-highlight-text="vm.$$country.$$searchTextName">{{ country.name }}</span>
+					</md-item-template>
+					<md-not-found>Country `{{ vm.$$country.$$searchTextName }}` not found.</md-not-found>
+					<ng-messages for="registration_form.country.$error">
+						<ng-messages-include src="templates/validation-messages.partial.html"></ng-messages-include>
+					</ng-messages>
+				</md-autocomplete>
+			</div>
+		</section>
+
+	</form>
+	<footer layout layout-align="space-between end">
+		<md-button href="#/registration/step/2/of/4">
+			&lt; Go back
+		</md-button>
+		<md-button class="md-raised md-accent" ng-click="vm.processFormStep($event)">
+			Continue &gt;
+		</md-button>
+	</footer>
+</md-content>

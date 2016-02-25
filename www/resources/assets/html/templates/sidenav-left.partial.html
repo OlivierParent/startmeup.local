@@ -1,0 +1,42 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+	<div ng-controller="LeftCtrl as left">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Menu</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" aria-label="Close sidenav" ng-click="left.close()">
+					<md-icon md-font-icon="fa fa-close"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<md-content layout-padding>
+			<md-list>
+				<md-list-item>
+					<md-button ng-click="left.close()" href="#/moods" flex>
+						<md-icon md-font-icon="fa fa-smile-o"></md-icon> Moods
+					</md-button>
+				</md-list-item>
+				<md-list-item>
+					<md-button ng-click="left.close()" href="#/goals/in-progress" flex>
+						<md-icon md-font-icon="fa fa-gear"></md-icon> My Goals
+					</md-button>
+				</md-list-item>
+				<md-list-item>
+					<md-button ng-click="left.close()" href="#/goals" flex>
+						<md-icon md-font-icon="fa fa-gear"></md-icon> Goals
+					</md-button>
+				</md-list-item>
+				<md-list-item>
+					<md-button ng-click="left.close()" href="#/nearby" flex>
+						<md-icon md-font-icon="fa fa-location-arrow"></md-icon> Nearby
+					</md-button>
+				</md-list-item>
+				<md-list-item>
+					<md-button ng-click="left.close()" href="#/settings" flex>
+						<md-icon md-font-icon="fa fa-cogs"></md-icon> Settings
+					</md-button>
+				</md-list-item>
+			</md-list>
+		</md-content>
+	</div>
+</md-sidenav>
